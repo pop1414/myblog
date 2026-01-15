@@ -1,0 +1,43 @@
+﻿# 操作系统与通用
+.DS_Store
+Thumbs.db
+
+# IDE / 编辑器
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Java / Maven
+**/target/
+**/build/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+*.log
+*.pid
+*.hprof
+hs_err_pid*
+replay_pid*
+
+# Spring Boot 可执行产物
+*.jar
+*.war
+
+# Node / 前端
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 环境与临时文件
+.env
+.env.local
+.env.*.local
+*.swp
+*.tmp
