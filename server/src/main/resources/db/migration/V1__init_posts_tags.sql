@@ -50,5 +50,17 @@ CREATE TABLE post_tags
 CREATE INDEX idx_post_tags_tag_id ON post_tags (tag_id);
 
 
+-- 4. 插入少量测试数据 (Seed Data)
+-- 这一步是为了让你等会儿 API 跑通时能立刻看到数据，而不是空数组
+INSERT INTO posts (title, slug, content, status, published_at)
+VALUES ('Hello World', 'hello-world', '这是我的第一篇 **Markdown** 博客。', 'PUBLISHED', NOW()),
+       ('Docker 部署指南', 'docker-guide', 'Docker Compose 非常好用...', 'PUBLISHED', NOW() - INTERVAL '1 day');
 
+INSERT INTO tags (name, slug)
+VALUES ('Java', 'java'),
+       ('DevOps', 'devops');
+
+-- 关联: Hello World -> Java
+INSERT INTO post_tags (post_id, tag_id)
+VALUES (1, 1);
 
