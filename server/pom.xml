@@ -58,6 +58,11 @@
             <version>3.0.5</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.19</version>
+        </dependency>
         <!-- Flyway 核心库：负责执行 SQL 脚本 -->
         <dependency>
             <groupId>org.flywaydb</groupId>

@@ -12,6 +12,17 @@ spring:
   # Flyway配置
   flyway:
     enabled: true
-    baseline-on- migrate: true
+    baseline-on-migrate: true
     locations: classpath:db/migration
+
+# MyBatis配置
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath:mapper/**/*.xml
+  configuration:
+    # 开启自动驼峰命名转换：published_at -> publishedAt
+    map-underscore-to-camel-case: true
+    # 打印 SQL 日志到控制台
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
