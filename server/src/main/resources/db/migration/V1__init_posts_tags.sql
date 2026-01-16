@@ -7,13 +7,13 @@ CREATE TABLE posts
     summary      TEXT,
     cover_url    TEXT,
     content      TEXT         NOT NULL,
-    content_type VARCHAR(20)  NOT NULL DEFAULT 'MARKDOWN', -- MARKDOWN/PLAIN
+    content_type VARCHAR(20)  NOT NULL DEFAULT 'MARKDOWN', -- MARKDOWN/PLAIN_TEXT
     status       VARCHAR(20)  NOT NULL DEFAULT 'DRAFT',    -- DRAFT/PUBLISHED
 
     published_at TIMESTAMPTZ,                              -- 带时区的时间戳
     deleted_at   TIMESTAMPTZ,                              --软删除
     created_at   TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    update_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+    updated_at   TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 
 -- 索引建议：加速公开列表查询 (只查已发布且未删除的) published降序
