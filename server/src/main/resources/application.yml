@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: myblog-server
+
+  # 数据库连接配置
+  datasource:
+    url: jdbc:postgresql://localhost:5432/blog_db
+    username: spike
+    password: spike
+    driver-class-name: org.postgresql.Driver
+
+  # Flyway配置
+  flyway:
+    enabled: true
+    baseline-on- migrate: true
+    locations: classpath:db/migration
+
