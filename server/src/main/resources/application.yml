@@ -17,6 +17,10 @@ spring:
 
 # MyBatis配置
 mybatis:
+  # 1. 自动扫描别名包
+  # 这里的原理是：MyBatis 会扫描该包下的所有类，
+  # 并自动将类名注册为别名（例如 User.java -> 别名 "User" 或 "user"）
+  type-aliases-package: com.spike.blog.server.model.entity
   mapper-locations:
     - classpath:dao/*.xml
     - classpath:mapper/**/*.xml

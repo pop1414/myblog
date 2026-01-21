@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 核心：Namespace 必须和 Mapper 接口完全一致 -->
+<mapper namespace="com.spike.blog.server.mapper.PostMapper">
+
+    <!-- 定义可重用的列名，防止 SQL 里写 * 导致性能问题或字段顺序错误 -->
+    <sql id="Base_Column_List">
+        id, title, slug, summary, cover_url, content,
+        content_type, status, published_at, deleted_at, created_at, updated_at
+    </sql>
+
+    <select id="selectById" resultType="Post">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM posts
+        WHERE id = #{id}
+    </select>
+
+
+</mapper>
