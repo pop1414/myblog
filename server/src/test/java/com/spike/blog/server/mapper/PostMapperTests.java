@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,7 +37,7 @@ class PostMapperTests {
     void shouldFetchSeedPostById() {
         Long existingId = 1L; // 使用你库里的实际 ID；此处对应示例数据
 
-        Post post = postMapper.selectById(existingId);
+        Post post = postMapper.selectPostById(existingId);
 
         assertThat(post).isNotNull();
         assertThat(post.getId()).isEqualTo(existingId);
@@ -56,10 +57,24 @@ class PostMapperTests {
     }
 
     @Test
+    void shouldListPostsAndContainSeedPost() {
+        List<Post> posts = postMapper.selectAllPosts();
+
+        assertThat(posts).isNotEmpty();
+        Post post = posts.stream()
+                .filter(p -> p.getId().equals(1L))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("未在列表中找到 ID=1 的种子数据"));
+
+        assertThat(post.getTitle()).isEqualTo("Hello World");
+        assertThat(post.getSlug()).isEqualTo("hello-world");
+    }
+
+    @Test
     void shouldReturnNullWhenIdMissing() {
         Long missingId = 999_999L; // 根据需要调整
 
-        Post post = postMapper.selectById(missingId);
+        Post post = postMapper.selectPostById(missingId);
 
         assertThat(post).isNull();
     }

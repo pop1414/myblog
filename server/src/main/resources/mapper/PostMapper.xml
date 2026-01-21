@@ -5,17 +5,42 @@
 <!-- 核心：Namespace 必须和 Mapper 接口完全一致 -->
 <mapper namespace="com.spike.blog.server.mapper.PostMapper">
 
+    <!-- 告诉 MyBatis 数据库列怎么对应 Java 字段 -->
+    <resultMap id="BaseResultMap" type="Post">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="slug" jdbcType="VARCHAR" property="slug"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
+        <result column="cover_url" jdbcType="VARCHAR" property="coverUrl"/>
+        <!-- content 字段通常很大，有时候列表查询不需要查它，可以另起一个 ResultMap，这里先包含 -->
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="content_type" jdbcType="VARCHAR" property="contentType"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="published_at" jdbcType="TIMESTAMP" property="publishedAt"/>
+        <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+    </resultMap>
+
     <!-- 定义可重用的列名，防止 SQL 里写 * 导致性能问题或字段顺序错误 -->
     <sql id="Base_Column_List">
         id, title, slug, summary, cover_url, content,
         content_type, status, published_at, deleted_at, created_at, updated_at
     </sql>
 
-    <select id="selectById" resultType="Post">
+    <select id="selectPostById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM posts
         WHERE id = #{id}
+    </select>
+
+    <select id="selectAllPosts" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM posts
+        <!-- 这里的 ORDER BY 很重要，通常列表都是按发布时间倒序 -->
+        ORDER BY created_at DESC
     </select>
 
 
