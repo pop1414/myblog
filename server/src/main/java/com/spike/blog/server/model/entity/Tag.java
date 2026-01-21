@@ -16,7 +16,7 @@ import java.time.OffsetDateTime;
  */
 @Data
 @Builder
-public class TagEntity implements Serializable {
+public class Tag implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 

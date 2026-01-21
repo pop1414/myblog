@@ -24,7 +24,7 @@ import java.time.OffsetDateTime;
 @Data
 @Builder
 
-public class PostEntity implements Serializable {
+public class Post implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
